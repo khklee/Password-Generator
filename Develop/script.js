@@ -33,7 +33,8 @@ var generatePassword = function() {
       }  
 
       // log a response
-      console.log("The password will include " + caseOptionPrompt + ".");
+      console.log("The password will include" + caseOptionPrompt + ".");
+        
 
       // validate prompt answer
       if (caseOptionPrompt > 3 || caseOptionPrompt < 0) {
@@ -53,15 +54,35 @@ var generatePassword = function() {
       numericPrompt = numericPrompt.toLocaleLowerCase();
 
       if (numericPrompt === "yes") {
-        var numericPrompt = password.numbers
+        var numericPrompt = password.numbers;
         // log a response
-        console.log("The password will include numbers");
+        console.log("The password will include " + password.numbers + ".");
       
       } else {
         // log a response
-        console.log("The password will not include numbers");
+        console.log("The password will not include " + password.numbers + ".");
+      }
+  
+  // ask for character types to include speical characters
+  var specialCharPrompt = window.prompt("Would you like to include special characters? Enter 'Yes' or 'No' to choose.");
+
+      // validate prompt answer
+      if (specialCharPrompt === "" || specialCharPrompt === null) {
+        window.alert("You need to provide a valid answer! Please try again.");
+        return generatePassword();
       }
 
+      specialCharPrompt = specialCharPrompt.toLocaleLowerCase();
+
+      if (specialCharPrompt === "yes") {
+        var specialCharPrompt = password.speical;
+        // log a response
+        console.log("The password will include " + password.special + ".");
+      
+      } else {
+        // log a response
+        console.log("The password will not include numbers" + password.special + ".");
+      }
 
 };
 
@@ -88,6 +109,7 @@ var password = {
   lowercase: "abcdefghijklmnopqrstuvwxyz", 
   uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   mixed: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  numbers: "1234567890"
+  numbers: "1234567890",
+  special: "~!@#$%^&*()_+-=`{}:;,.<>?/"
 
 };
