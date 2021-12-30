@@ -1,19 +1,21 @@
 // Assignment code here
 
-// variable arrays
-var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-var specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "=", "+"];
+// variable declaration
+const lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+const upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const numbers = '1234567890';
+const specialChar = '!@#$%^&*()_=+';
+var charTypes = '';
+var password = '';
 
 var generatePassword = function() {
 
   // ask for length of the password
-  var lengthprompt = window.prompt("How long your password would be? Minimum 8 to maximum 128 characters.");
+  var lengthprompt = prompt("How long your password would be? Minimum 8 to maximum 128 characters.");
 
     // validate prompt answer
     if (lengthprompt < 8 || lengthprompt > 128) {
-      window.alert("You need to provide a valid answer! Please try again.");
+      alert("You need to provide a valid answer! Please try again.");
       return generatePassword();
     }
       // log a response
@@ -21,17 +23,47 @@ var generatePassword = function() {
     
     
   // continues to ask for character types
-    var confirmLowercase = window.confirm("Click OK to confirm if you would like to include lowercase characters.");
-    var confirmUppercase = window.confirm("Click OK to confirm if you would like to include uppercase characters.");
-    var confirmNumeric = window.confirm("Click OK to confirm if you would like to include numeric characters.");
-    var confirmSpeicial = window.confirm("Click OK to confirm if you would like to include special characters.");
+  var confirmLowercase = confirm("Click OK to confirm if you would like to include lowercase characters.");
+  var confirmUppercase = confirm("Click OK to confirm if you would like to include uppercase characters.");
+  var confirmNumeric = confirm("Click OK to confirm if you would like to include numeric characters.");
+  var confirmSpeicial = confirm("Click OK to confirm if you would like to include special characters.");
        
-      // validate confirm answers
-      if (confirmLowercase === false && confirmUppercase === false && confirmNumeric === false && confirmSpeicial === false) {
-        window.alert("You need to choose at least one character type! Please try again.");
-        return generatePassword();
-      }
+    // validate confirm answers
+    if (!confirmLowercase && !confirmUppercase && !confirmNumeric && !confirmSpeicial) {
+      alert("You need to choose at least one character type! Please try again.");
+      return generatePassword();
+    }
   
+  var charTypes = [];
+
+  // if one character types was choosed
+    if (confirmLowercase) {
+    var charTypes = lowerCase;
+    }
+  
+  if (confirmUppercase) {
+    var charTypes = upperCase;
+    }
+
+  if (confirmNumeric) {
+    var charTypes = numbers;
+  }
+
+  if (confirmSpeicial) {
+    var charTypes = specialChar;
+  }
+
+  /* if (confirmLowercase && confirmUppercase) {
+    const charTypes = lowerCase.concat(upperCase);
+  } */
+  
+  for (var i = 0; i < lengthprompt; i++) {
+    password  += charTypes.charAt(Math.floor(Math.random() * charTypes.length));
+  }
+  return password;
+};
+
+
 
     
 
@@ -109,12 +141,9 @@ var generatePassword = function() {
 
       // generate random password
 
-      for (var i = 0; i = lengthprompt; i++) {
-        randomPassword  += keyCharacters.charAt(Math.floor(Math.random() * lengthprompt));
-        return password;
       
       } */
-};
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
